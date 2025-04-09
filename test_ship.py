@@ -20,6 +20,11 @@ class TestShip(unittest.TestCase):
         expected_positions = [(1, 1), (2, 1)]
         self.assertEqual(ship.positions, expected_positions)
 
+    def test_place_ship_invalid_direction(self):
+        ship = Ship(length=2)
+        with self.assertRaises(ValueError):
+            ship.place((0, 0), "Z")  # Ogiltig riktning
+
     def test_register_hit_success(self):
         ship = Ship(length=2)
         ship.place((0, 0), "H")

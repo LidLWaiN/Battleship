@@ -5,10 +5,17 @@ class Board:
         self.shots_taken = set()
 
     def place_ship(self, ship):
+        for pos in ship.positions:
+            r, c = pos
+            if r < 0 or c < 0 or r >= self.size or c >= self.size:
+                return False # Skeppet går utanför brädet
+            
         # Kontrollera att inga positioner krockar med redan placerade skepp
         for existing_ship in self.ships:
             if any(pos in existing_ship.positions for pos in ship.positions):
                 return False
+        
+        # Placera skeppet
         self.ships.append(ship)
         return True
 
@@ -18,6 +25,8 @@ class Board:
         self.shots_taken.add(coord)
         for ship in self.ships:
             if ship.register_hit(coord):
+                if ship.is_sunk():
+                    return "Hit and sunk"
                 return "Hit"
         return "Miss"
 

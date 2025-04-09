@@ -42,6 +42,13 @@ def play_game():
             print(f"👉 Resultat: {result}")
             if "wins" in result:
                 print("🎉 Spelet är slut!")
+                print("\nSlutställning:\n")
+
+                print(f"{game.players[0].name}s bräde:")
+                game.players[0].board.display_public()
+
+                print(f"\n{game.players[1].name}s bräde:")
+                game.players[1].board.display_public()
                 break
         except:
             print("Felaktig input. Försök igen.")

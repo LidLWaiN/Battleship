@@ -32,7 +32,6 @@ class TestGameEngine(unittest.TestCase):
         result = self.game.take_turn((1, 1))  # träff, men inte sänkt
         self.assertEqual(result, "Hit")
 
-
     def test_switch_turns(self):
         # Se till att spelet inte avslutas efter första skottet
         self.p2.board.ships.clear()
@@ -42,7 +41,6 @@ class TestGameEngine(unittest.TestCase):
 
         self.game.take_turn((1, 1))
         self.assertEqual(self.game.current_player().name, "Spelare 2")
-
 
     def test_game_win_condition(self):
         result = self.game.take_turn((1, 1))
